@@ -1,0 +1,321 @@
+@import "tailwindcss";
+
+/* ===== Don't Starve Inspired Theme ===== */
+:root {
+  --ds-brown: #3d2b1f;
+  --ds-dark: #1a120b;
+  --ds-paper: #f4e4c1;
+  --ds-parchment: #d4c4a0;
+  --ds-red: #8b2500;
+  --ds-gold: #c9a84c;
+  --ds-blood: #5c1515;
+  --ds-moss: #4a5d23;
+  --ds-slate: #3a3a4a;
+}
+
+@font-face {
+  font-family: 'DS Hand';
+  src: local('Georgia');
+}
+
+/* 饥荒风格：纸张纹理背景 */
+body {
+  background-color: #1a120b;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.01) 2px,
+      rgba(255, 255, 255, 0.01) 4px
+    );
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: #f4e4c1;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+/* 粗边框 - 饥荒标志性风格 */
+.ds-border {
+  border: 3px solid #3d2b1f;
+  box-shadow:
+    inset 0 0 0 2px #1a120b,
+    0 0 0 2px #1a120b,
+    2px 2px 0 #00000044;
+}
+
+.ds-border-gold {
+  border: 3px solid #c9a84c;
+  box-shadow:
+    inset 0 0 0 2px #1a120b,
+    0 0 0 2px #1a120b,
+    2px 2px 0 #00000044;
+}
+
+.ds-border-red {
+  border: 3px solid #8b2500;
+  box-shadow:
+    inset 0 0 0 2px #1a120b,
+    0 0 0 2px #1a120b,
+    2px 2px 0 #00000044;
+}
+
+/* 按钮 - 饥荒风格 */
+.ds-btn {
+  background: linear-gradient(180deg, #5c3d2e 0%, #3d2b1f 50%, #2a1a10 100%);
+  border: 2px solid #1a120b;
+  border-bottom: 3px solid #0a0603;
+  color: #f4e4c1;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.1s;
+  position: relative;
+}
+
+.ds-btn:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+}
+
+.ds-btn-gold {
+  background: linear-gradient(180deg, #d4a84c 0%, #c9a84c 50%, #8b6914 100%);
+  border: 2px solid #5c3d00;
+  border-bottom: 3px solid #3d2500;
+  color: #1a120b;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.ds-btn-gold:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+}
+
+.ds-btn-danger {
+  background: linear-gradient(180deg, #8b2500 0%, #5c1515 50%, #3d0a0a 100%);
+  border: 2px solid #2a0000;
+  border-bottom: 3px solid #1a0000;
+  color: #f4e4c1;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.ds-btn-danger:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+}
+
+/* 原料卡片 */
+.ds-card {
+  background: linear-gradient(180deg, #4a3728 0%, #3d2b1f 100%);
+  border: 2px solid #2a1a10;
+  box-shadow: 2px 2px 0 #00000055;
+}
+
+.ds-card:hover {
+  border-color: #c9a84c;
+}
+
+.ds-card-selected {
+  border-color: #c9a84c !important;
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.4), 2px 2px 0 #00000055;
+}
+
+/* 混合杯 - 动画 */
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  10% { transform: translateX(-3px) rotate(-2deg); }
+  20% { transform: translateX(3px) rotate(2deg); }
+  30% { transform: translateX(-3px) rotate(-1deg); }
+  40% { transform: translateX(3px) rotate(1deg); }
+  50% { transform: translateX(-1px); }
+  60% { transform: translateX(1px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+}
+
+@keyframes bubble {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 0.5; }
+  100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
+}
+
+@keyframes swirl {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glitch {
+  0% { clip-path: inset(40% 0 61% 0); }
+  20% { clip-path: inset(92% 0 1% 0); }
+  40% { clip-path: inset(43% 0 1% 0); }
+  60% { clip-path: inset(25% 0 58% 0); }
+  80% { clip-path: inset(54% 0 7% 0); }
+  100% { clip-path: inset(58% 0 43% 0); }
+}
+
+@keyframes dark-cook {
+  0% { filter: brightness(1) blur(0); }
+  30% { filter: brightness(0.5) sepia(1) blur(2px); }
+  50% { filter: brightness(0.3) sepia(1) hue-rotate(-30deg) blur(4px); }
+  70% { filter: brightness(0.6) sepia(0.5) blur(2px); }
+  100% { filter: brightness(1) blur(0); }
+}
+
+.shake-anim {
+  animation: shake 0.5s ease-in-out;
+}
+
+.swirl-anim {
+  animation: swirl 1s ease-in-out;
+}
+
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+.dark-cook-anim {
+  animation: dark-cook 1.5s ease-in-out;
+}
+
+/* 气泡 */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  animation: bubble 1.5s ease-out forwards;
+}
+
+/* 卷轴式面板 */
+.scroll-panel {
+  background:
+    linear-gradient(180deg,
+      rgba(212, 196, 160, 0.15) 0%,
+      rgba(196, 180, 144, 0.1) 50%,
+      rgba(180, 164, 128, 0.15) 100%
+    );
+  border-top: 3px solid #8b6914;
+  border-bottom: 3px solid #8b6914;
+  position: relative;
+}
+
+.scroll-panel::before,
+.scroll-panel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg,
+    transparent 0%, #8b6914 20%, #c9a84c 50%, #8b6914 80%, transparent 100%
+  );
+}
+
+.scroll-panel::before { top: -5px; }
+.scroll-panel::after { bottom: -5px; }
+
+/* 粒子效果 */
+@keyframes particle {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: particle 0.8s ease-out forwards;
+}
+
+/* 黑暗料理效果 */
+@keyframes smoke {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-60px) scale(3); opacity: 0; }
+}
+
+.smoke {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #3a3a4a 0%, transparent 70%);
+  border-radius: 50%;
+  animation: smoke 2s ease-out forwards;
+}
+
+/* 饥荒风格 HUD 字体 */
+.hud-text {
+  text-shadow:
+    2px 2px 0 #1a120b,
+    -1px -1px 0 #1a120b,
+    1px -1px 0 #1a120b,
+    -1px 1px 0 #1a120b;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a120b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3d2b1f;
+  border-radius: 3px;
+}
+
+/* Tab 切换 */
+.ds-tab {
+  padding: 8px 16px;
+  background: #2a1a10;
+  border: 2px solid #3d2b1f;
+  color: #8b7355;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.ds-tab-active {
+  background: #3d2b1f;
+  border-color: #c9a84c;
+  color: #f4e4c1;
+}
+
+/* 输入框 */
+.ds-input {
+  background: #2a1a10;
+  border: 2px solid #3d2b1f;
+  color: #f4e4c1;
+  padding: 8px 12px;
+  font-family: 'Georgia', serif;
+  outline: none;
+  width: 100%;
+}
+
+.ds-input:focus {
+  border-color: #c9a84c;
+}
