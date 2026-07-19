@@ -138,56 +138,90 @@ export default function BrewLab({ game, onNavigate }) {
         >
           {/* 杯子 SVG */}
           <svg viewBox="0 0 160 200" className="w-full h-full">
-            {/* 杯身 */}
+            {/* 杯身主体 - 圆柱形 */}
             <path
-              d="M30 40 L25 170 L135 170 L130 40 Z"
+              d="M35 45 L38 165 L122 165 L125 45 Z"
               fill={selected.length >= 1 ? (selected.length >= 2 ? mixedColor : (ingredients.find(i => i.id === selected[0])?.color || '#2a1a10')) : '#2a1a10'}
-              stroke="#5c4a3a"
-              strokeWidth="2.5"
-              opacity={selected.length >= 1 ? 0.92 : 0.25}
+              stroke="#6b5a4a"
+              strokeWidth="2"
+              opacity={selected.length >= 1 ? 0.92 : 0.3}
             />
 
-            {/* 杯身底部加粗 */}
-            <path
-              d="M25 170 L135 170"
-              stroke="#6b5a4a"
-              strokeWidth="4"
-              fill="none"
-              strokeLinecap="round"
+            {/* 杯底底座 */}
+            <rect
+              x="32" y="163" width="96" height="6"
+              rx="3" fill="#5c4a3a"
+              opacity={selected.length >= 1 ? 0.9 : 0.3}
             />
 
             {/* 液体分层效果 */}
             {selected.length >= 1 && selected.map((id, i) => {
               const ing = ingredients.find(x => x.id === id);
-              const layerH = selected.length === 1 ? 130 : 130 / selected.length;
-              const yStart = selected.length === 1 ? 40 : 40 + i * layerH;
+              const layerH = selected.length === 1 ? 112 : 112 / selected.length;
+              const yStart = selected.length === 1 ? 53 : 53 + i * layerH;
               return (
                 <rect
                   key={id}
-                  x="27" y={yStart} width="106" height={Math.max(layerH, 2)}
+                  x="39" y={yStart} width="82" height={Math.max(layerH, 2)}
                   fill={ing?.color || '#888'} opacity="0.75" rx="1"
                 />
               );
             })}
 
-            {/* 玻璃高光 */}
+            {/* 杯口内壁（让杯子有深度） */}
+            <ellipse
+              cx="80" cy="45" rx="46" ry="10"
+              fill="rgba(0,0,0,0.2)"
+              stroke="#6b5a4a"
+              strokeWidth="2"
+            />
+
+            {/* 杯口边缘高光 */}
+            <ellipse
+              cx="80" cy="44" rx="44" ry="8"
+              fill="none"
+              stroke="rgba(255,255,255,0.15)"
+              strokeWidth="1.5"
+            />
+
+            {/* 左侧杯身高光 */}
             <path
-              d="M35 50 L30 160"
-              stroke="rgba(255,255,255,0.12)"
-              strokeWidth="3"
+              d="M42 55 L44 155"
+              stroke="rgba(255,255,255,0.18)"
+              strokeWidth="4"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d="M52 55 L53 155"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="2"
               fill="none"
               strokeLinecap="round"
             />
 
-            {/* 杯口椭圆 */}
-            <ellipse cx="80" cy="40" rx="52" ry="9" fill={selected.length >= 1 ? 'rgba(255,255,255,0.05)' : 'transparent'} stroke="#5c4a3a" strokeWidth="2" />
-
-            {/* 把手 */}
+            {/* 右侧杯身高光（窄一点） */}
             <path
-              d="M130 60 Q155 60 155 90 Q155 120 130 120"
+              d="M118 55 L117 155"
+              stroke="rgba(255,255,255,0.06)"
+              strokeWidth="2"
               fill="none"
-              stroke="#5c4a3a"
-              strokeWidth="3"
+              strokeLinecap="round"
+            />
+
+            {/* 把手 - 精致小弧线 */}
+            <path
+              d="M125 65 C142 65, 142 120, 125 130"
+              fill="none"
+              stroke="#6b5a4a"
+              strokeWidth="5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M125 72 C136 72, 136 113, 125 118"
+              fill="none"
+              stroke="#1a120b"
+              strokeWidth="2.5"
               strokeLinecap="round"
             />
           </svg>
