@@ -194,7 +194,7 @@ export default function BrewLab({ game, onNavigate }) {
               strokeLinecap="round"
             />
             <path
-              d="M52 55 L52 140"
+              d="M52 55 L52 148"
               stroke="rgba(255,255,255,0.08)"
               strokeWidth="2"
               fill="none"
@@ -255,7 +255,7 @@ export default function BrewLab({ game, onNavigate }) {
 
           {/* 空杯提示 */}
           {selected.length === 0 && !brewing && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ paddingLeft: '12px' }}>
               <span className="text-[#5c4a3a] text-sm italic">选择原料...</span>
             </div>
           )}
