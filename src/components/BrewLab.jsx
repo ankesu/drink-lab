@@ -138,12 +138,22 @@ export default function BrewLab({ game, onNavigate }) {
         >
           {/* 杯子 SVG */}
           <svg viewBox="0 0 160 200" className="w-full h-full">
+            {/* 杯身 */}
             <path
               d="M30 40 L25 170 L135 170 L130 40 Z"
               fill={selected.length >= 1 ? (selected.length >= 2 ? mixedColor : (ingredients.find(i => i.id === selected[0])?.color || '#2a1a10')) : '#2a1a10'}
-              stroke="#3d2b1f"
-              strokeWidth="3"
-              opacity={selected.length >= 1 ? 0.9 : 0.3}
+              stroke="#5c4a3a"
+              strokeWidth="2.5"
+              opacity={selected.length >= 1 ? 0.92 : 0.25}
+            />
+
+            {/* 杯身底部加粗 */}
+            <path
+              d="M25 170 L135 170"
+              stroke="#6b5a4a"
+              strokeWidth="4"
+              fill="none"
+              strokeLinecap="round"
             />
 
             {/* 液体分层效果 */}
@@ -155,14 +165,31 @@ export default function BrewLab({ game, onNavigate }) {
                 <rect
                   key={id}
                   x="27" y={yStart} width="106" height={Math.max(layerH, 2)}
-                  fill={ing?.color || '#888'} opacity="0.7" rx="1"
+                  fill={ing?.color || '#888'} opacity="0.75" rx="1"
                 />
               );
             })}
 
-            <ellipse cx="80" cy="40" rx="52" ry="8" fill="none" stroke="#3d2b1f" strokeWidth="2" />
-            <path d="M33 45 L28 165" stroke="rgba(255,255,255,0.1)" strokeWidth="2" fill="none" />
-            <path d="M130 60 Q155 60 155 90 Q155 120 130 120" fill="none" stroke="#3d2b1f" strokeWidth="3" />
+            {/* 玻璃高光 */}
+            <path
+              d="M35 50 L30 160"
+              stroke="rgba(255,255,255,0.12)"
+              strokeWidth="3"
+              fill="none"
+              strokeLinecap="round"
+            />
+
+            {/* 杯口椭圆 */}
+            <ellipse cx="80" cy="40" rx="52" ry="9" fill={selected.length >= 1 ? 'rgba(255,255,255,0.05)' : 'transparent'} stroke="#5c4a3a" strokeWidth="2" />
+
+            {/* 把手 */}
+            <path
+              d="M130 60 Q155 60 155 90 Q155 120 130 120"
+              fill="none"
+              stroke="#5c4a3a"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
           </svg>
 
           {/* 气泡 */}
