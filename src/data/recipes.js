@@ -14,7 +14,7 @@ export const ingredients = [
   { id: 'jasmine', name: '茉莉花茶', emoji: '🍵', color: '#c3a662', category: 'tea' },
   { id: 'oolong', name: '乌龙茶', emoji: '🍂', color: '#8b5e3c', category: 'tea' },
   { id: 'greentea', name: '绿茶', emoji: '🍃', color: '#7ab648', category: 'tea' },
-  { id: 'iceTea', name: '冰红茶', emoji: '🧊', color: '#c4722a', category: 'tea' },
+  { id: 'iceTea', name: '冰红茶', emoji: '🫖', color: '#c4722a', category: 'tea' },
 
   // === 奶 ===
   { id: 'milk', name: '纯牛奶', emoji: '🥛', color: '#faf0e6', category: 'dairy' },
