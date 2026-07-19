@@ -13,11 +13,6 @@
   --ds-slate: #3a3a4a;
 }
 
-@font-face {
-  font-family: 'DS Hand';
-  src: local('Georgia');
-}
-
 /* 饥荒风格：纸张纹理背景 */
 body {
   background-color: #1a120b;
