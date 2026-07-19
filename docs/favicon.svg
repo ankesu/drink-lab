@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="32" fill="#1a120b"/>
+  <rect x="8" y="8" width="176" height="176" rx="28" fill="none" stroke="#3d2b1f" stroke-width="4"/>
+  <text x="96" y="110" text-anchor="middle" font-size="80">🧪</text>
+  <text x="96" y="160" text-anchor="middle" font-size="16" fill="#c9a84c" font-family="serif">DRINK LAB</text>
+</svg>

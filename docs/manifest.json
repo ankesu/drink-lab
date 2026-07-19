@@ -1,0 +1,22 @@
+{
+  "name": "饮料炼金台 - Drink Lab",
+  "short_name": "DrinkLab",
+  "description": "饥荒风格的饮料混合炼金游戏",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a120b",
+  "theme_color": "#3d2b1f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
