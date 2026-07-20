@@ -142,10 +142,18 @@ export default function BrewLab({ game, onNavigate }) {
             <path
               d="M35 45 L35 150 Q35 165 80 165 Q125 165 125 150 L125 45 Z"
               fill={selected.length >= 1 ? (selected.length >= 2 ? mixedColor : (ingredients.find(i => i.id === selected[0])?.color || '#2a1a10')) : '#2a1a10'}
-              stroke="#6b5a4a"
+              stroke={selected.length >= 1 ? '#6b5a4a' : 'none'}
               strokeWidth="2"
               opacity={selected.length >= 1 ? 0.92 : 0.3}
             />
+
+            {/* 空杯时单独画左右杯壁 */}
+            {selected.length === 0 && (
+              <>
+                <line x1="35" y1="46" x2="35" y2="149" stroke="rgba(107,90,74,0.5)" strokeWidth="2" strokeLinecap="round" />
+                <line x1="125" y1="46" x2="125" y2="149" stroke="rgba(107,90,74,0.5)" strokeWidth="2" strokeLinecap="round" />
+              </>
+            )}
 
             {/* 液体分层效果 */}
             {selected.length >= 1 && selected.map((id, i) => {
