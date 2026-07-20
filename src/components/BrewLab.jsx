@@ -138,43 +138,28 @@ export default function BrewLab({ game, onNavigate }) {
         >
           {/* 杯子 SVG */}
           <svg viewBox="0 0 160 200" className="w-full h-full">
-            <defs>
-              {/* 杯身裁剪路径 - 液体只在杯内显示 */}
-              <clipPath id="cup-clip">
-                <path d="M36 55 L36 148 Q36 164 80 164 Q124 164 124 148 L124 55 Z" />
-              </clipPath>
-            </defs>
-
             {/* 杯身主体 - 圆底玻璃杯 */}
             <path
               d="M35 45 L35 150 Q35 165 80 165 Q125 165 125 150 L125 45 Z"
-              fill="rgba(42,26,16,0.35)"
+              fill={selected.length >= 1 ? (selected.length >= 2 ? mixedColor : (ingredients.find(i => i.id === selected[0])?.color || '#2a1a10')) : '#2a1a10'}
               stroke="#6b5a4a"
               strokeWidth="2"
+              opacity={selected.length >= 1 ? 0.92 : 0.3}
             />
 
-            {/* 液体填充效果 - 从下往上堆叠，受杯身裁剪 */}
-            {selected.length >= 1 && (
-              <g clipPath="url(#cup-clip)">
-                {selected.map((id, i) => {
-                  const ing = ingredients.find(x => x.id === id);
-                  const count = selected.length;
-                  // 每个原料占杯身总高度的比例
-                  const cupH = 110; // 从 y=55 到 y=165
-                  const layerH = count === 1 ? cupH : cupH / count;
-                  // 从下往上堆叠
-                  const yBottom = 164 - (i * layerH);
-                  const yTop = yBottom - layerH;
-                  return (
-                    <rect
-                      key={id}
-                      x="37" y={yTop} width="86" height={Math.max(layerH, 2)}
-                      fill={ing?.color || '#888'} opacity="0.8"
-                    />
-                  );
-                })}
-              </g>
-            )}
+            {/* 液体分层效果 */}
+            {selected.length >= 1 && selected.map((id, i) => {
+              const ing = ingredients.find(x => x.id === id);
+              const layerH = selected.length === 1 ? 105 : 105 / selected.length;
+              const yStart = selected.length === 1 ? 55 : 55 + i * layerH;
+              return (
+                <rect
+                  key={id}
+                  x="39" y={yStart} width="82" height={Math.max(layerH, 2)}
+                  fill={ing?.color || '#888'} opacity="0.75" rx="1"
+                />
+              );
+            })}
 
             {/* 杯底圆弧线 */}
             <path
@@ -184,12 +169,13 @@ export default function BrewLab({ game, onNavigate }) {
               strokeWidth="2.5"
             />
 
-            {/* 杯口内壁 */}
+            {/* 杯口内壁 - 填充和液体颜色一致 */}
             <ellipse
               cx="80" cy="45" rx="46" ry="10"
-              fill="rgba(0,0,0,0.2)"
+              fill={selected.length >= 1 ? (selected.length >= 2 ? mixedColor : (ingredients.find(i => i.id === selected[0])?.color || '#2a1a10')) : '#2a1a10'}
               stroke="#6b5a4a"
               strokeWidth="2"
+              opacity={selected.length >= 1 ? 0.92 : 0.3}
             />
 
             {/* 杯口边缘高光 */}
